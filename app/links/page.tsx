@@ -212,66 +212,30 @@ const generatedSlug =
 
 </div>
 
-<div className="mt-16">
+<div className="mt-10">
 
-  <h2 className="text-2xl font-bold mb-6">
-    Your Links
-  </h2>
-              
-  <div className="bg-zinc-900 p-6 rounded-2xl space-y-4">
-
-  {links.map((link) => (
-
-      <div
-        key={link.id}
-        className="flex items-center justify-between border-b border-zinc-800 pb-4"
-      >
-
-        <div>
-
-  <p className="text-lg font-bold">
-    /{link.slug}
-  </p>
-
-  <p className="text-sm text-zinc-500 mt-1">
-    {link.offer}
-  </p>
-
-</div>
-
-<div className="flex items-center gap-6">
-
-  <p className="text-sm text-green-400">
-    Clicks: {
-
-    analytics.find(
-      (a) => a.slug === link.slug
-    )?.clicks || 0
-
+  <textarea
+    readOnly
+    value={
+      links
+        .map(
+          (link) =>
+            `https://go.viroxa.pro/${link.slug}`
+        )
+        .join("\n")
     }
-  </p>
-
-  <button
-    onClick={() => {
-
-      navigator.clipboard.writeText(
-        `https://go.viroxa.pro/${link.slug}`
-      );
-
-      alert("Link copied");
-    }}
-    className="bg-white text-black px-4 py-2 rounded-lg text-sm font-bold"
-  >
-    Copy
-  </button>
-
-</div>
-
-      </div>
-
-    ))}
-
-  </div>
+    className="
+      w-full
+      h-[400px]
+      bg-zinc-900
+      p-6
+      rounded-2xl
+      text-sm
+      text-zinc-300
+      outline-none
+      resize-none
+    "
+  />
 
 </div>
 

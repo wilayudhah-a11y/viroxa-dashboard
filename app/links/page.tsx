@@ -42,39 +42,47 @@ export default function LinksPage() {
 
 	const createLink = async () => {
 
+  const requests = [];
+
   for (let i = 1; i <= amount; i++) {
 
     const randomSlug =
-  Math.random()
-    .toString(36)
-    .substring(2, 8);
+      Math.random()
+        .toString(36)
+        .substring(2, 8);
 
-const generatedSlug =
-  slug.trim() !== ""
-    ? amount === 1
-      ? slug
-      : `${slug}-${i}`
-    : randomSlug;
+    const generatedSlug =
+      slug.trim() !== ""
+        ? amount === 1
+          ? slug
+          : `${slug}-${i}`
+        : randomSlug;
 
-    await fetch(
-      "https://go.viroxa.pro/api/create",
-      {
-        method: "POST",
+    requests.push(
 
-        headers: {
-          "Content-Type": "application/json"
-        },
+      fetch(
+        "https://go.viroxa.pro/api/create",
+        {
+          method: "POST",
 
-        body: JSON.stringify({
-          slug: generatedSlug,
-          title,
-          description,
-          image,
-          offer
-        })
-      }
+          headers: {
+            "Content-Type": "application/json"
+          },
+
+          body: JSON.stringify({
+            slug: generatedSlug,
+            title,
+            description,
+            image,
+            offer
+          })
+        }
+      )
+
     );
   }
+
+  await Promise.all(requests);
 
   alert("Links created");
 

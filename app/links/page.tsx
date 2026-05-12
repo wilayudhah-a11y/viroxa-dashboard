@@ -156,7 +156,7 @@ const generatedSlug =
 			}
 		/>
 
-        <div className="flex gap-4">
+<div className="flex gap-4">
 
   <button
     onClick={createLink}
@@ -209,7 +209,15 @@ const generatedSlug =
   </button>
 
 </div>
-      
+
+</div>
+
+<div className="mt-16">
+
+  <h2 className="text-2xl font-bold mb-6">
+    Your Links
+  </h2>
+              
   <div className="bg-zinc-900 p-6 rounded-2xl space-y-4">
 
   {links.map((link) => (

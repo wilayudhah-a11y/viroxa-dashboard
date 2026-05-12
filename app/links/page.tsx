@@ -26,7 +26,7 @@ export default function LinksPage() {
   const [links, setLinks] =
     useState<LinkItem[]>([]);
 	
-  const [analytics, setAnalytics] =
+  const [analytics] =
 	useState<AnalyticsItem[]>([]);
 
   const fetchLinks = async () => {
@@ -39,25 +39,6 @@ export default function LinksPage() {
 
     setLinks(data);
   };
-  
-  const fetchAnalytics = async () => {
-
-  const response = await fetch(
-    "https://go.viroxa.pro/api/analytics"
-  );
-
-  const data = await response.json();
-
-  setAnalytics(data);
-	};
-
-  useEffect(() => {
-
-  fetchLinks();
-
-  fetchAnalytics();
-
-	}, []);
 
 	const createLink = async () => {
 
@@ -107,7 +88,7 @@ const generatedSlug =
         Create Link
       </h1>
 
-      <div className="mt-10 max-w-xl space-y-4">
+      <div className="mt-10 space-y-4">
 
         <input
           type="text"
@@ -226,7 +207,7 @@ const generatedSlug =
     }
     className="
       w-full
-      h-[400px]
+      h-[500px]
       bg-zinc-900
       p-6
       rounded-2xl

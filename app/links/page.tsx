@@ -101,7 +101,7 @@ const generatedSlug =
 };
 
   return (
-    <main className="min-h-screen bg-zinc-950 text-white p-10">
+    <main className="min-h-screen bg-zinc-950 text-white p-10 max-w-7xl mx-auto">
 
       <h1 className="text-4xl font-bold">
         Create Link
@@ -214,60 +214,7 @@ const generatedSlug =
 
       <div className="mt-16">
 
-  <div className="flex items-center justify-between mb-6">
-
-    <h2 className="text-2xl font-bold">
-      Your Links
-    </h2>
-
-    <div className="flex gap-4">
-
-      <button
-        onClick={() => {
-
-          const allLinks = links
-            .map(
-              (link) =>
-                `https://go.viroxa.pro/${link.slug}`
-            )
-            .join("\n");
-
-          navigator.clipboard.writeText(allLinks);
-
-          alert("All links copied");
-        }}
-        className="bg-white text-black px-4 py-2 rounded-lg font-bold"
-      >
-        Copy All
-      </button>
-
-      <button
-        onClick={async () => {
-
-          const confirmDelete =
-            confirm("Delete all links?");
-
-          if (!confirmDelete) return;
-
-          await fetch(
-            "https://go.viroxa.pro/api/links",
-            {
-              method: "DELETE"
-            }
-          );
-
-          fetchLinks();
-
-          alert("All links deleted");
-        }}
-        className="bg-red-500 text-white px-4 py-2 rounded-lg font-bold"
-      >
-        Delete All
-      </button>
-
     </div>
-
-  </div>
 
   <div className="space-y-4">
 
@@ -275,7 +222,7 @@ const generatedSlug =
 
       <div
         key={link.id}
-        className="bg-zinc-900 p-4 rounded-xl flex items-center justify-between"
+        className="bg-zinc-900 p-5 rounded-xl flex items-center justify-between"
       >
 
         <div>

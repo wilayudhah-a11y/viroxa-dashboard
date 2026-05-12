@@ -32,7 +32,7 @@ export default function LinksPage() {
   const fetchLinks = async () => {
 
     const response = await fetch(
-      "http://127.0.0.1:8788/api/links"
+      "https://go.viroxa.pro/api/links"
     );
 
     const data = await response.json();
@@ -43,7 +43,7 @@ export default function LinksPage() {
   const fetchAnalytics = async () => {
 
   const response = await fetch(
-    "http://127.0.0.1:8788/api/analytics"
+    "https://go.viroxa.pro/api/analytics"
   );
 
   const data = await response.json();
@@ -76,7 +76,7 @@ const generatedSlug =
     : randomSlug;
 
     await fetch(
-      "http://127.0.0.1:8788/api/create",
+      "https://go.viroxa.pro/api/create",
       {
         method: "POST",
 
@@ -181,7 +181,7 @@ const generatedSlug =
           const allLinks = links
             .map(
               (link) =>
-                `http://127.0.0.1:8788/${link.slug}`
+                `https://go.viroxa.pro/${link.slug}`
             )
             .join("\n");
 
@@ -203,7 +203,7 @@ const generatedSlug =
           if (!confirmDelete) return;
 
           await fetch(
-            "http://127.0.0.1:8788/api/links",
+            "https://go.viroxa.pro/api/links",
             {
               method: "DELETE"
             }
@@ -259,7 +259,7 @@ const generatedSlug =
           onClick={() => {
 
             navigator.clipboard.writeText(
-              `http://127.0.0.1:8788/${link.slug}`
+              `https://go.viroxa.pro/${link.slug}`
             );
 
             alert("Link copied");

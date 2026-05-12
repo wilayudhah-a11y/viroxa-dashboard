@@ -156,12 +156,59 @@ const generatedSlug =
 			}
 		/>
 
-        <button
-          onClick={createLink}
-          className="bg-white text-black px-6 py-3 rounded-xl font-bold"
-        >
-          Create Link
-        </button>
+        <div className="flex gap-4">
+
+  <button
+    onClick={createLink}
+    className="bg-white text-black px-6 py-3 rounded-xl font-bold"
+  >
+    Create Link
+  </button>
+
+  <button
+    onClick={() => {
+
+      const allLinks = links
+        .map(
+          (link) =>
+            `https://go.viroxa.pro/${link.slug}`
+        )
+        .join("\n");
+
+      navigator.clipboard.writeText(allLinks);
+
+      alert("All links copied");
+    }}
+    className="bg-blue-500 text-white px-6 py-3 rounded-xl font-bold"
+  >
+    Copy All
+  </button>
+
+  <button
+    onClick={async () => {
+
+      const confirmDelete =
+        confirm("Delete all links?");
+
+      if (!confirmDelete) return;
+
+      await fetch(
+        "https://go.viroxa.pro/api/links",
+        {
+          method: "DELETE"
+        }
+      );
+
+      fetchLinks();
+
+      alert("All links deleted");
+    }}
+    className="bg-red-500 text-white px-6 py-3 rounded-xl font-bold"
+  >
+    Delete All
+  </button>
+
+</div>
 
       </div>
 
@@ -228,46 +275,48 @@ const generatedSlug =
 
       <div
         key={link.id}
-        className="bg-zinc-900 p-6 rounded-2xl"
+        className="bg-zinc-900 p-4 rounded-xl flex items-center justify-between"
       >
 
-        <h3 className="text-xl font-bold">
-          {link.title}
-        </h3>
+        <div>
 
-        <p className="text-zinc-400 mt-2">
-          /{link.slug}
-        </p>
+  <p className="text-lg font-bold">
+    /{link.slug}
+  </p>
 
-        <p className="text-sm text-zinc-500 mt-1">
-          {link.offer}
-        </p>
-		
-		<p className="text-sm text-green-400 mt-2">
+  <p className="text-sm text-zinc-500 mt-1">
+    {link.offer}
+  </p>
 
-			Clicks: {
+</div>
 
-			analytics.find(
-			(a) => a.slug === link.slug
-			)?.clicks || 0
+<div className="flex items-center gap-6">
 
-			}
+  <p className="text-sm text-green-400">
+    Clicks: {
 
-		</p>
+    analytics.find(
+      (a) => a.slug === link.slug
+    )?.clicks || 0
 
-        <button
-          onClick={() => {
+    }
+  </p>
 
-            navigator.clipboard.writeText(
-              `https://go.viroxa.pro/${link.slug}`
-            );
+  <button
+    onClick={() => {
 
-            alert("Link copied");
-          }}
-          className="mt-4 bg-white text-black px-4 py-2 rounded-lg text-sm font-bold"
-        >
-          Copy Link
-        </button>
+      navigator.clipboard.writeText(
+        `https://go.viroxa.pro/${link.slug}`
+      );
+
+      alert("Link copied");
+    }}
+    className="bg-white text-black px-4 py-2 rounded-lg text-sm font-bold"
+  >
+    Copy
+  </button>
+
+</div>
 
       </div>
 

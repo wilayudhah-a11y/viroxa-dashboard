@@ -209,20 +209,14 @@ const generatedSlug =
   </button>
 
 </div>
+      
+  <div className="bg-zinc-900 p-6 rounded-2xl space-y-4">
 
-      </div>
-
-      <div className="mt-16">
-
-    </div>
-
-  <div className="space-y-4">
-
-    {links.map((link) => (
+  {links.map((link) => (
 
       <div
         key={link.id}
-        className="bg-zinc-900 p-5 rounded-xl flex items-center justify-between"
+        className="flex items-center justify-between border-b border-zinc-800 pb-4"
       >
 
         <div>

@@ -129,7 +129,7 @@ return (
 
 <AdminLayout>
 
-  <main className="flex items-center justify-center px-4 py-10">
+  <main className="w-full px-6 py-8">
 
     <div className="w-full max-w-5xl rounded-[32px] border border-white/10 bg-white/5 backdrop-blur-2xl shadow-2xl p-6 md:p-8">
 

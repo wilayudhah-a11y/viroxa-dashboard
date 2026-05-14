@@ -33,6 +33,15 @@ export default function LinksPage() {
 	
   const [analytics] =
 	useState<AnalyticsItem[]>([]);
+	
+	const currentUser =
+  typeof window !== "undefined"
+    ? JSON.parse(
+        localStorage.getItem(
+          "viroxa_user"
+        ) || "{}"
+      )
+    : {};
 
 
 const fetchLinks = async () => {
@@ -99,6 +108,7 @@ useEffect(() => {
             description,
             image,
             offer
+			user_id: currentUser.id
           })
         }
       )

@@ -89,70 +89,61 @@ export default function LinksPage() {
   fetchLinks();
 };
 
-  return (
-          setAmount(Number(e.target.value))
-        }
-      />
+return (
+                    `https://go.viroxa.pro/${link.slug}`
+                )
+                .join("\n");
 
-      <div className="flex flex-wrap gap-3 pt-2">
+              navigator.clipboard.writeText(allLinks);
 
-        <button
-          onClick={createLink}
-          className="bg-white text-black px-5 py-2.5 rounded-xl text-sm font-semibold"
-        >
-          Create Link
-        </button>
+              alert("All links copied");
+            }}
+            className="px-5 bg-white/10 border border-white/10 hover:bg-white/20 transition rounded-2xl text-sm"
+          >
+            Copy
+          </button>
 
-        <button
-          onClick={() => {
+          <button
+            onClick={async () => {
 
-            const allLinks = links
-              .map(
-                (link) =>
-                  `https://go.viroxa.pro/${link.slug}`
-              )
-              .join("\n");
+              const confirmDelete =
+                confirm("Delete all links?");
 
-            navigator.clipboard.writeText(allLinks);
+              if (!confirmDelete) return;
 
-            alert("All links copied");
-          }}
-          className="bg-blue-500 text-white px-5 py-2.5 rounded-xl text-sm font-semibold"
-        >
-          Copy All
-        </button>
+              await fetch(
+                "https://go.viroxa.pro/api/links",
+                {
+                  method: "DELETE"
+                }
+              );
 
-        <button
-          onClick={async () => {
+              fetchLinks();
 
-            const confirmDelete =
-              confirm("Delete all links?");
+              alert("All links deleted");
+            }}
+            className="px-5 bg-red-500/20 border border-red-500/30 hover:bg-red-500/30 transition rounded-2xl text-sm text-red-300"
+          >
+            Delete
+          </button>
 
-            if (!confirmDelete) return;
-
-            await fetch(
-              "https://go.viroxa.pro/api/links",
-              {
-                method: "DELETE"
-              }
-            );
-
-            fetchLinks();
-
-            alert("All links deleted");
-          }}
-          className="bg-red-500 text-white px-5 py-2.5 rounded-xl text-sm font-semibold"
-        >
-          Delete All
-        </button>
+        </div>
 
       </div>
 
-    </div>
+      <div className="mt-8 rounded-3xl border border-white/10 bg-black/20 p-4 backdrop-blur-xl">
 
-    <div className="mt-8">
+        <div className="flex items-center justify-between mb-3">
 
-      <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4">
+          <h2 className="text-sm font-semibold text-zinc-300">
+            Generated Links
+          </h2>
+
+          <p className="text-xs text-zinc-500">
+            {links.length} links
+          </p>
+
+        </div>
 
         <textarea
           readOnly
@@ -164,7 +155,7 @@ export default function LinksPage() {
               )
               .join("\n")
           }
-          className="w-full h-[320px] bg-transparent outline-none resize-none text-sm text-zinc-300"
+          className="w-full h-[240px] bg-transparent outline-none resize-none text-sm text-zinc-300"
         />
 
       </div>

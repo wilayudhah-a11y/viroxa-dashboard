@@ -90,6 +90,21 @@ export default function LinksPage() {
 };
 
 return (
+          <button
+            onClick={createLink}
+            className="flex-1 min-w-[140px] bg-gradient-to-r from-cyan-500 to-blue-600 hover:opacity-90 transition rounded-2xl py-3 text-sm font-semibold shadow-lg shadow-cyan-500/20"
+          >
+            Generate Link
+          </button>
+
+          <button
+            onClick={() => {
+
+              const allLinks = links
+                .map(
+                  (link) =>
+                    `https://go.viroxa.pro/${link.slug}`
+                )
                 .join("\n");
 
               navigator.clipboard.writeText(allLinks);
@@ -162,4 +177,3 @@ return (
 
   </main>
 );
-}

@@ -3,6 +3,7 @@
 
 import { useRouter } from "next/navigation";
 
+import AdminLayout from "../components/AdminLayout";
 
 import { useEffect, useState } from "react";
 
@@ -125,7 +126,10 @@ useEffect(() => {
 
 
 return (
-  <main className="min-h-screen bg-gradient-to-br from-zinc-950 via-black to-zinc-900 text-white flex items-center justify-center px-4 py-10">
+
+<AdminLayout>
+
+  <main className="flex items-center justify-center px-4 py-10">
 
     <div className="w-full max-w-5xl rounded-[32px] border border-white/10 bg-white/5 backdrop-blur-2xl shadow-2xl p-6 md:p-8">
 
@@ -284,6 +288,8 @@ return (
     </div>
 
   </main>
+  
+  </AdminLayout>
 );
 
 }

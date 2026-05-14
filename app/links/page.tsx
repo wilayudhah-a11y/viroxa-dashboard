@@ -1,5 +1,9 @@
 "use client";
 
+
+import { useRouter } from "next/navigation";
+
+
 import { useEffect, useState } from "react";
 
 type LinkItem = {
@@ -16,6 +20,7 @@ type AnalyticsItem = {
 
 export default function LinksPage() {
 
+  const router = useRouter();
   const [slug, setSlug] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -29,16 +34,35 @@ export default function LinksPage() {
   const [analytics] =
 	useState<AnalyticsItem[]>([]);
 
-  const fetchLinks = async () => {
 
-    const response = await fetch(
-      "https://go.viroxa.pro/api/links"
+const fetchLinks = async () => {
+
+  const response = await fetch(
+    "https://go.viroxa.pro/api/links"
+  );
+
+  const data = await response.json();
+
+  setLinks(data);
+};
+
+
+useEffect(() => {
+
+  const user =
+    localStorage.getItem(
+      "viroxa_user"
     );
 
-    const data = await response.json();
+  if (!user) {
 
-    setLinks(data);
-  };
+    router.push("/login");
+  }
+
+  fetchLinks();
+
+}, []);
+
 
 	const createLink = async () => {
 

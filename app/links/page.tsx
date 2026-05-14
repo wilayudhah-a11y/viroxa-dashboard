@@ -90,74 +90,76 @@ export default function LinksPage() {
 };
 
 return (
-  <main className="min-h-screen bg-gradient-to-br from-zinc-950 via-zinc-900 to-black text-white flex items-center justify-center px-4 py-10 overflow-hidden">
+                .join("\n");
 
-    <div className="w-full max-w-4xl rounded-[32px] border border-white/10 bg-white/5 backdrop-blur-2xl shadow-2xl p-6 md:p-8">
+              navigator.clipboard.writeText(allLinks);
 
-      <div className="flex items-center justify-between mb-8">
+              alert("All links copied");
+            }}
+            className="px-5 bg-white/10 border border-white/10 hover:bg-white/20 transition rounded-2xl text-sm"
+          >
+            Copy
+          </button>
 
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-            VIROXA LINKS
-          </h1>
+          <button
+            onClick={async () => {
 
-          <p className="text-zinc-400 text-sm mt-1">
-            Generate futuristic smart links
-          </p>
+              const confirmDelete =
+                confirm("Delete all links?");
+
+              if (!confirmDelete) return;
+
+              await fetch(
+                "https://go.viroxa.pro/api/links",
+                {
+                  method: "DELETE"
+                }
+              );
+
+              fetchLinks();
+
+              alert("All links deleted");
+            }}
+            className="px-5 bg-red-500/20 border border-red-500/30 hover:bg-red-500/30 transition rounded-2xl text-sm text-red-300"
+          >
+            Delete
+          </button>
+
         </div>
 
-        <div className="flex items-center gap-2">
+      </div>
 
-          <div className="w-3 h-3 rounded-full bg-green-400 animate-pulse"></div>
+      <div className="mt-8 rounded-3xl border border-white/10 bg-black/20 p-4 backdrop-blur-xl">
 
-          <p className="text-xs text-zinc-400">
-            LIVE
+        <div className="flex items-center justify-between mb-3">
+
+          <h2 className="text-sm font-semibold text-zinc-300">
+            Generated Links
+          </h2>
+
+          <p className="text-xs text-zinc-500">
+            {links.length} links
           </p>
 
         </div>
 
-      </div>
-
-      <div className="grid md:grid-cols-2 gap-4">
-
-        <input
-          type="text"
-          placeholder="Slug"
-          className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-sm outline-none focus:border-cyan-400 transition"
-          value={slug}
-          onChange={(e) => setSlug(e.target.value)}
-        />
-
-        <input
-          type="text"
-          placeholder="Offer URL"
-          className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-sm outline-none focus:border-cyan-400 transition"
-          value={offer}
-          onChange={(e) => setOffer(e.target.value)}
-        />
-
-      </div>
-
-      <div className="grid md:grid-cols-2 gap-4 mt-4">
-
         <textarea
-          placeholder="Titles"
-          className="w-full h-28 bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-sm outline-none resize-none focus:border-cyan-400 transition"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-
-        <textarea
-          placeholder="Descriptions"
-          className="w-full h-28 bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-sm outline-none resize-none focus:border-cyan-400 transition"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          readOnly
+          value={
+            links
+              .map(
+                (link) =>
+                  `https://go.viroxa.pro/${link.slug}`
+              )
+              .join("\n")
+          }
+          className="w-full h-[240px] bg-transparent outline-none resize-none text-sm text-zinc-300"
         />
 
       </div>
 
-      <textarea
-        placeholder="Image URLs"
-        className="w-full h-24 mt-4 bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-sm outline-none resize-none focus:border-cyan-400 transition"
+    </div>
+
+  </main>
 );
 }

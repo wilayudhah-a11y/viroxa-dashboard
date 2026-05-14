@@ -89,10 +89,96 @@ export default function LinksPage() {
   fetchLinks();
 };
 
+
 return (
+  <main className="min-h-screen bg-gradient-to-br from-zinc-950 via-black to-zinc-900 text-white flex items-center justify-center px-4 py-10">
+
+    <div className="w-full max-w-5xl rounded-[32px] border border-white/10 bg-white/5 backdrop-blur-2xl shadow-2xl p-6 md:p-8">
+
+      <div className="flex items-center justify-between mb-8">
+
+        <div>
+          <h1 className="text-4xl font-black tracking-tight bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+            VIROXA LINKS
+          </h1>
+
+          <p className="text-zinc-400 text-sm mt-1">
+            Smart Link Generator
+          </p>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></div>
+
+          <p className="text-xs text-zinc-500">
+            LIVE
+          </p>
+        </div>
+
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-4">
+
+        <input
+          type="text"
+          placeholder="Slug"
+          className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-sm outline-none focus:border-cyan-400 transition"
+          value={slug}
+          onChange={(e) => setSlug(e.target.value)}
+        />
+
+        <input
+          type="text"
+          placeholder="Offer URL"
+          className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-sm outline-none focus:border-cyan-400 transition"
+          value={offer}
+          onChange={(e) => setOffer(e.target.value)}
+        />
+
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-4 mt-4">
+
+        <textarea
+          placeholder="Titles"
+          className="w-full h-28 bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-sm outline-none resize-none focus:border-cyan-400 transition"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+
+        <textarea
+          placeholder="Descriptions"
+          className="w-full h-28 bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-sm outline-none resize-none focus:border-cyan-400 transition"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+
+      </div>
+
+      <textarea
+        placeholder="Image URLs"
+        className="w-full h-24 mt-4 bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-sm outline-none resize-none focus:border-cyan-400 transition"
+        value={image}
+        onChange={(e) => setImage(e.target.value)}
+      />
+
+      <div className="flex flex-col md:flex-row gap-4 mt-4">
+
+        <input
+          type="number"
+          placeholder="Amount"
+          className="w-full md:w-40 bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-sm outline-none focus:border-cyan-400 transition"
+          value={amount}
+          onChange={(e) =>
+            setAmount(Number(e.target.value))
+          }
+        />
+
+        <div className="flex flex-wrap gap-3 w-full">
+
           <button
             onClick={createLink}
-            className="flex-1 min-w-[140px] bg-gradient-to-r from-cyan-500 to-blue-600 hover:opacity-90 transition rounded-2xl py-3 text-sm font-semibold shadow-lg shadow-cyan-500/20"
+            className="flex-1 min-w-[160px] bg-gradient-to-r from-cyan-500 to-blue-600 hover:opacity-90 transition rounded-2xl py-3 text-sm font-semibold shadow-lg shadow-cyan-500/20"
           >
             Generate Link
           </button>
@@ -177,4 +263,5 @@ return (
 
   </main>
 );
+
 }

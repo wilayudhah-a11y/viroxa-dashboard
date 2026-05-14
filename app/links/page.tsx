@@ -266,18 +266,6 @@ return (
 
       <div className="mt-8 rounded-3xl border border-white/10 bg-black/20 p-4 backdrop-blur-xl">
 
-        <div className="flex items-center justify-between mb-3">
-
-          <h2 className="text-sm font-semibold text-zinc-300">
-            Generated Links
-          </h2>
-
-          <p className="text-xs text-zinc-500">
-            {links.length} links
-          </p>
-
-        </div>
-
         <textarea
           readOnly
           value={

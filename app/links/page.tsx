@@ -107,7 +107,7 @@ useEffect(() => {
             title,
             description,
             image,
-            offer
+            offer,
 			user_id: currentUser.id
           })
         }

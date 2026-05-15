@@ -255,7 +255,7 @@ return (
               if (!confirmDelete) return;
 
               await fetch(
-                "https://go.viroxa.pro"/api/links",
+                "/api/links",
                 {
                   method: "DELETE"
                 }

@@ -255,12 +255,21 @@ return (
 
               if (!confirmDelete) return;
 
-              await fetch(
-                "/api/links",
-                {
-                  method: "DELETE"
-                }
-              );
+				await fetch(
+				"/api/links",
+				{
+					method: "DELETE",
+				
+					headers: {
+					"Content-Type":
+						"application/json"
+					},
+				
+					body: JSON.stringify({
+					user_id: currentUser.id
+					})
+				}
+				);
 
               fetchLinks();
 

@@ -47,3 +47,34 @@ export async function GET(
   return NextResponse.json(data);
 }
 
+export async function DELETE(
+  req: Request
+) {
+
+  const body = await req.json();
+
+  const { error } =
+    await supabase
+      .from("links")
+      .delete()
+      .eq("user_id", body.user_id);
+
+  if (error) {
+
+    return NextResponse.json(
+      {
+        error: error.message
+      },
+      {
+        status: 500
+      }
+    );
+  }
+
+  return NextResponse.json({
+    success: true
+  });
+}
+
+
+

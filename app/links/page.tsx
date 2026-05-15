@@ -100,7 +100,7 @@ useEffect(() => {
     requests.push(
 
       fetch(
-        "https://go.viroxa.pro/api/create",
+        "https://go.viroxa.pro"/api/create",
         {
           method: "POST",
 
@@ -255,7 +255,7 @@ return (
               if (!confirmDelete) return;
 
               await fetch(
-                "https://go.viroxa.pro/api/links",
+                "https://go.viroxa.pro"/api/links",
                 {
                   method: "DELETE"
                 }

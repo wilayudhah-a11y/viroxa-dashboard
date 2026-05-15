@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 
+import { useRouter } from "next/navigation";
+
 type UserItem = {
   id: number;
   username: string;
@@ -9,7 +11,28 @@ type UserItem = {
   role: string;
 };
 
+
 export default function AdminUsersPage() {
+
+	const router = useRouter();
+	
+		useEffect(() => {
+	
+	const user =
+		JSON.parse(
+		localStorage.getItem(
+			"viroxa_user"
+		) || "{}"
+		);
+	
+		if (
+			user.role !== "admin"
+		) {
+		
+			router.push("/links");
+		}
+		
+		}, []);
 
   const [users, setUsers] =
     useState<UserItem[]>([]);

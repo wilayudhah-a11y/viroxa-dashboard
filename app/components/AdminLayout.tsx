@@ -77,11 +77,47 @@ export default function AdminLayout({
 
       <section className="flex-1 p-6">
 
-        {children}
+  <div className="mb-6 flex items-center justify-between bg-white/5 border border-white/10 backdrop-blur-2xl rounded-3xl px-6 py-4">
 
-      </section>
+    <div>
 
-    </main>
+      <h2 className="text-xl font-bold">
+        Dashboard
+      </h2>
+
+      <p className="text-zinc-500 text-sm mt-1">
+        Welcome back to Viroxa
+      </p>
+
+    </div>
+
+    <div className="flex items-center gap-4">
+
+      <div className="text-right">
+
+        <p className="text-sm font-semibold">
+          Admin
+        </p>
+
+        <p className="text-xs text-zinc-500">
+          Online
+        </p>
+
+      </div>
+
+      <div className="w-10 h-10 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 flex items-center justify-center font-bold">
+        V
+      </div>
+
+    </div>
+
+  </div>
+
+  {children}
+
+</section>
+
+ </main>
 
   );
 }

@@ -48,7 +48,7 @@ export default function LinksPage() {
 const fetchLinks = async () => {
 
   const response = await fetch(
-    `https://go.viroxa.pro/api/links?user_id=${currentUser.id}`
+    `/api/links?user_id=${currentUser.id}`
   );
 
   const data = await response.json();

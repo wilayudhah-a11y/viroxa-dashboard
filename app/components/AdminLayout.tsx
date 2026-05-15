@@ -21,7 +21,7 @@ const currentUser =
 
     <main className="min-h-screen bg-gradient-to-br from-zinc-950 via-black to-zinc-900 text-white flex">
 
-      <aside className="w-[260px] border-r border-white/10 bg-white/5 backdrop-blur-2xl p-6 hidden md:flex flex-col">
+      <aside className="w-[260px] h-screen sticky top-0 border-r border-white/10 bg-white/5 backdrop-blur-2xl p-6 hidden md:flex flex-col">
 
         <div>
 

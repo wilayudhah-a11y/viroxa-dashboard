@@ -1,31 +1,22 @@
 import { NextResponse } from "next/server";
 
-import fs from "fs";
-import path from "path";
+import { supabase } from "@/lib/supabase";
 
-const filePath = path.join(
-  process.cwd(),
-  "lib/users.json"
-);
-
-export async function POST(req: Request) {
+export async function POST(
+  req: Request
+) {
 
   const body = await req.json();
 
-  const file = fs.readFileSync(
-    filePath,
-    "utf8"
-  );
+  const { data, error } =
+    await supabase
+      .from("users")
+      .select("*")
+      .eq("username", body.username)
+      .eq("password", body.password)
+      .single();
 
-  const users = JSON.parse(file);
-
-  const user = users.find(
-    (u: any) =>
-      u.username === body.username &&
-      u.password === body.password
-  );
-
-  if (!user) {
+  if (error || !data) {
 
     return NextResponse.json(
       {
@@ -40,6 +31,7 @@ export async function POST(req: Request) {
 
   return NextResponse.json({
     success: true,
-    user
+    user: data
   });
 }
+

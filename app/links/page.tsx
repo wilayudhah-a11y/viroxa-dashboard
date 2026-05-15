@@ -12,6 +12,7 @@ type LinkItem = {
   slug: string;
   title: string;
   offer: string;
+  tracking: string;
 };
 
 type AnalyticsItem = {
@@ -233,7 +234,7 @@ return (
               const allLinks = links
                 .map(
                   (link) =>
-                    `https://go.viroxa.pro/${link.slug}`
+                    `https://go.viroxa.pro/${link.slug}/${link.tracking}`
                 )
                 .join("\n");
 
@@ -282,7 +283,7 @@ return (
             links
               .map(
                 (link) =>
-                  `https://go.viroxa.pro/${link.slug}`
+                  `https://go.viroxa.pro/${link.slug}/${link.tracking}`
               )
               .join("\n")
           }

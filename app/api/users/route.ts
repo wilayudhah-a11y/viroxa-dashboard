@@ -1,65 +1,89 @@
 import { NextResponse } from "next/server";
 
-import fs from "fs";
-import path from "path";
-
-const filePath = path.join(
-  process.cwd(),
-  "lib/users.json"
-);
+import { supabase } from "@/lib/supabase";
 
 export async function GET() {
 
-  const file = fs.readFileSync(filePath, "utf8");
+  const { data, error } =
+    await supabase
+      .from("users")
+      .select("*")
+      .order("id", {
+        ascending: false
+      });
 
-  return NextResponse.json(JSON.parse(file));
+  if (error) {
+
+    return NextResponse.json(
+      {
+        error: error.message
+      },
+      {
+        status: 500
+      }
+    );
+  }
+
+  return NextResponse.json(data);
 }
 
-export async function POST(req: Request) {
+export async function POST(
+  req: Request
+) {
 
   const body = await req.json();
 
-  const file = fs.readFileSync(filePath, "utf8");
+  const { error } =
+    await supabase
+      .from("users")
+      .insert([
+        {
+          username: body.username,
+          password: body.password,
+          role: "user"
+        }
+      ]);
 
-  const users = JSON.parse(file);
+  if (error) {
 
-  const newUser = {
-    id: Date.now(),
-    username: body.username,
-    password: body.password,
-    role: "user"
-  };
-
-  users.push(newUser);
-
-  fs.writeFileSync(
-    filePath,
-    JSON.stringify(users, null, 2)
-  );
+    return NextResponse.json(
+      {
+        error: error.message
+      },
+      {
+        status: 500
+      }
+    );
+  }
 
   return NextResponse.json({
     success: true
   });
 }
 
-export async function DELETE(req: Request) {
+export async function DELETE(
+  req: Request
+) {
 
   const body = await req.json();
 
-  const file = fs.readFileSync(filePath, "utf8");
+  const { error } =
+    await supabase
+      .from("users")
+      .delete()
+      .eq("id", body.id);
 
-  const users = JSON.parse(file);
+  if (error) {
 
-  const filteredUsers =
-    users.filter(
-      (user: any) =>
-        user.id !== body.id
+    return NextResponse.json(
+      {
+        error: error.message
+      },
+      {
+        status: 500
+      }
     );
-
-  fs.writeFileSync(
-    filePath,
-    JSON.stringify(filteredUsers, null, 2)
-  );
+  }
 
   return NextResponse.json({
     success: true

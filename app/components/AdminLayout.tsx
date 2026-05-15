@@ -8,6 +8,15 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
 
+const currentUser =
+  typeof window !== "undefined"
+    ? JSON.parse(
+        localStorage.getItem(
+          "viroxa_user"
+        ) || "{}"
+      )
+    : {};
+
   return (
 
     <main className="min-h-screen bg-gradient-to-br from-zinc-950 via-black to-zinc-900 text-white flex">
@@ -96,7 +105,7 @@ export default function AdminLayout({
       <div className="text-right">
 
         <p className="text-sm font-semibold">
-          Admin
+		   {currentUser.username || "Guest"}
         </p>
 
         <p className="text-xs text-zinc-500">
@@ -106,7 +115,9 @@ export default function AdminLayout({
       </div>
 
       <div className="w-10 h-10 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 flex items-center justify-center font-bold">
-        V
+        {currentUser.username
+  ?.charAt(0)
+  ?.toUpperCase() || "V"}
       </div>
 
     </div>

@@ -92,6 +92,11 @@ useEffect(() => {
           : `${slug}-${i}`
         : randomSlug;
 
+	const encodedUser = btoa(
+		String(currentUser.id)
+		);
+
+
     requests.push(
 
       fetch(
@@ -104,6 +109,7 @@ useEffect(() => {
           },
 
           body: JSON.stringify({
+			tracking: encodedUser,
             slug: generatedSlug,
             title,
             description,

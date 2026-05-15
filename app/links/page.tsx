@@ -100,7 +100,7 @@ useEffect(() => {
     requests.push(
 
       fetch(
-        "https://go.viroxa.pro"/api/create",
+        "/api/create",
         {
           method: "POST",
 

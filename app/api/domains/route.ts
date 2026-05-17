@@ -50,27 +50,38 @@ export async function POST(
       .select()
       .single();
 	  
-await fetch(
+const vercelResponse =
+  await fetch(
 
-  `https://api.vercel.com/v10/projects/${process.env.VERCEL_PROJECT_ID}/domains`,
+    `https://api.vercel.com/v10/projects/${process.env.VERCEL_PROJECT_ID}/domains`,
 
-  {
-    method: "POST",
+    {
+      method: "POST",
 
-    headers: {
+      headers: {
 
-      Authorization:
-        `Bearer ${process.env.VERCEL_API_TOKEN}`,
+        Authorization:
+          `Bearer ${process.env.VERCEL_API_TOKEN}`,
 
-      "Content-Type":
-        "application/json"
-    },
+        "Content-Type":
+          "application/json"
+      },
 
-    body: JSON.stringify({
-      name: domain
-    })
-  }
+      body: JSON.stringify({
+        name: domain
+      })
+    }
 );
+
+const vercelData =
+  await vercelResponse.json();
+
+console.log(
+  "VERCEL:",
+  vercelData
+);
+
+
 
 
   if (error) {

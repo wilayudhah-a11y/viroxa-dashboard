@@ -8,7 +8,7 @@ export async function POST(
 
   const body = await req.json();
 
-  const { error } =
+  const { data, error } =
     await supabase
       .from("links")
       .insert([
@@ -21,12 +21,20 @@ export async function POST(
           tracking: body.tracking,
           user_id: body.user_id
         }
-      ]);
+      ])
+      .select();
+
+  console.log(
+    "INSERT RESULT:",
+    data,
+    error
+  );
 
   if (error) {
 
     return NextResponse.json(
       {
+        success: false,
         error: error.message
       },
       {
@@ -36,7 +44,9 @@ export async function POST(
   }
 
   return NextResponse.json({
-    success: true
+    success: true,
+    data
   });
 }
+
 

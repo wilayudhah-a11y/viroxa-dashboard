@@ -117,51 +117,53 @@ const deleteDomain =
 
         <div className="mt-10 space-y-4">
 
-			{domains.map((item) => (
-			
-			<div
-			key={item.id}
-			className="bg-white/5 border border-white/10 rounded-2xl px-5 py-4 flex items-center justify-between"
-			>
-			
-			<div>
-			
-				<p className="font-semibold">
-				{item.domain}
-				</p>
-			
-				<p className="text-sm text-zinc-500 mt-1">
-				{item.status}
-				</p>
-			
-			</div>
-			
-			<div className="flex items-center gap-4">
-			
-				<div
-				className={`w-3 h-3 rounded-full ${
-					item.status === "active"
-					? "bg-green-400"
-					: "bg-yellow-400"
-				}`}
-				/>
-			
-				<button
-				onClick={() =>
-					deleteDomain(item.id)
-				}
-				className="text-red-400 text-sm"
-				>
-				Delete
-				</button>
-			
-			</div>
-			
-			</div>
-			
-			)}
+  {domains.map((item) => (
 
-		</div>
+    <div
+      key={item.id}
+      className="bg-white/5 border border-white/10 rounded-2xl px-5 py-4 flex items-center justify-between"
+    >
+
+      <div>
+
+        <p className="font-semibold">
+          {item.domain}
+        </p>
+
+        <p className="text-sm text-zinc-500 mt-1">
+          {item.status}
+        </p>
+
+      </div>
+
+      <div className="flex items-center gap-4">
+
+        <div
+          className={`w-3 h-3 rounded-full ${
+            item.status === "active"
+              ? "bg-green-400"
+              : "bg-yellow-400"
+          }`}
+        />
+
+        <button
+          onClick={() =>
+            deleteDomain(item.id)
+          }
+          className="text-red-400 text-sm"
+        >
+          Delete
+        </button>
+
+      </div>
+
+    </div>
+
+  ))}
+
+</div>
+
+
 
       </div>
 

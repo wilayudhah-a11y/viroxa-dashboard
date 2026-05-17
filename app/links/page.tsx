@@ -384,10 +384,7 @@ return (
 
             : selectedDomain;
 
-        return `${randomDomain.replace(
-          "https://",
-          "hxxps://"
-        )}/${link.slug}/${link.tracking}`;
+        return `${finalDomain}/${link.slug}/${link.tracking}`;
 
       })
       .join("\n")

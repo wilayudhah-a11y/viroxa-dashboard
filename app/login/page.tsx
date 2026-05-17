@@ -14,7 +14,12 @@ export default function LoginPage() {
   const [password, setPassword] =
     useState("");
 
-  const login = async () => {
+  const [loading, setLoading] =
+    useState(false);
+
+  const handleLogin = async () => {
+
+    setLoading(true);
 
     const response = await fetch(
       "/api/login",
@@ -22,7 +27,8 @@ export default function LoginPage() {
         method: "POST",
 
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type":
+            "application/json"
         },
 
         body: JSON.stringify({
@@ -32,11 +38,16 @@ export default function LoginPage() {
       }
     );
 
-    const data = await response.json();
+    const data =
+      await response.json();
 
     if (!data.success) {
 
-      alert("Invalid credentials");
+      setLoading(false);
+
+      alert(
+        "Invalid credentials"
+      );
 
       return;
     }
@@ -75,7 +86,9 @@ export default function LoginPage() {
             className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 outline-none text-sm"
             value={username}
             onChange={(e) =>
-              setUsername(e.target.value)
+              setUsername(
+                e.target.value
+              )
             }
           />
 
@@ -85,15 +98,32 @@ export default function LoginPage() {
             className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 outline-none text-sm"
             value={password}
             onChange={(e) =>
-              setPassword(e.target.value)
+              setPassword(
+                e.target.value
+              )
             }
+            onKeyDown={(e) => {
+
+              if (
+                e.key === "Enter"
+              ) {
+
+                handleLogin();
+              }
+
+            }}
           />
 
           <button
-            onClick={login}
-            className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 py-3 rounded-2xl text-sm font-semibold"
+            onClick={handleLogin}
+            disabled={loading}
+            className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 py-3 rounded-2xl font-semibold disabled:opacity-50"
           >
-            Login
+
+            {loading
+              ? "Loading..."
+              : "Login"}
+
           </button>
 
         </div>
@@ -101,7 +131,6 @@ export default function LoginPage() {
       </div>
 
     </main>
-
   );
 }
 

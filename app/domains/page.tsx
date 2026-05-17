@@ -65,6 +65,18 @@ export default function DomainsPage() {
     fetchDomains();
 };
 
+const deleteDomain =
+  async (id: number) => {
+
+    await fetch(
+      `/api/domains?id=${id}`,
+      {
+        method: "DELETE"
+      }
+    );
+
+    fetchDomains();
+};
 
   return (
 
@@ -124,18 +136,31 @@ export default function DomainsPage() {
 
               </div>
 
-              <div
-                className={`w-3 h-3 rounded-full ${
-                  item.status ===
-                  "active"
+           
+<div className="flex items-center gap-4">
 
-                    ? "bg-green-400"
+  <div
+    className={`w-3 h-3 rounded-full ${
+      item.status ===
+      "active"
 
-                    : "bg-yellow-400"
-                }`}
-              />
+        ? "bg-green-400"
 
-            </div>
+        : "bg-yellow-400"
+    }`}
+  />
+
+  <button
+    onClick={() =>
+      deleteDomain(item.id)
+    }
+    className="text-red-400 text-sm"
+  >
+    Delete
+  </button>
+
+</div>
+
 
           ))}
 

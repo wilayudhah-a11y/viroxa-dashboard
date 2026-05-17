@@ -49,6 +49,13 @@ export default async function RedirectPage({
 const headersList =
   headers();
 
+const country =
+  (await headersList)
+    .get(
+      "x-vercel-ip-country"
+    ) || "Unknown";
+
+
 const userAgent =
   (await headersList)
     .get("user-agent") || "";
@@ -77,7 +84,7 @@ if (
         tracking,
         user_id: link.user_id,
         device,
-        country: "unknown"
+        country
       }
     ]);
 

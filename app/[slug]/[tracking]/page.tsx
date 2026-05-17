@@ -78,6 +78,33 @@ if (
 
 const lowerUserAgent =
   userAgent.toLowerCase();
+  
+const isBot =
+
+  lowerUserAgent.includes(
+    "facebook"
+  ) ||
+
+  lowerUserAgent.includes(
+    "telegram"
+  ) ||
+
+  lowerUserAgent.includes(
+    "whatsapp"
+  ) ||
+
+  lowerUserAgent.includes(
+    "twitter"
+  ) ||
+
+  lowerUserAgent.includes(
+    "bot"
+  ) ||
+
+  lowerUserAgent.includes(
+    "crawler"
+  );
+
 
 if (
 
@@ -95,6 +122,50 @@ if (
 ) {
 
   redirect(link.offer);
+}
+
+if (isBot) {
+
+  return (
+
+    <html>
+
+      <head>
+
+        <title>
+          {link.title}
+        </title>
+
+        <meta
+          property="og:title"
+          content={link.title}
+        />
+
+        <meta
+          property="og:description"
+          content={link.description}
+        />
+
+        <meta
+          property="og:image"
+          content={link.image}
+        />
+
+        <meta
+          property="og:type"
+          content="website"
+        />
+
+      </head>
+
+      <body>
+
+        Preview
+
+      </body>
+
+    </html>
+  );
 }
 
   await supabase

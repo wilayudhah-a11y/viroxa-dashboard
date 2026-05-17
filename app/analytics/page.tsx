@@ -187,9 +187,23 @@ const todayClicks =
                     {item.slug}
                   </p>
 
-                  <p className="text-xs text-zinc-500 mt-1">
-                    {item.tracking}
-                  </p>
+                  
+				<p className="text-xs text-zinc-500 mt-1">
+				{item.tracking}
+				</p>
+				
+				<div className="flex gap-2 mt-2">
+				
+				<span className="text-[10px] bg-white/5 border border-white/10 px-2 py-1 rounded-full">
+					{item.device}
+				</span>
+				
+				<span className="text-[10px] bg-white/5 border border-white/10 px-2 py-1 rounded-full">
+					{item.country}
+				</span>
+				
+				</div>
+
 
                 </div>
 

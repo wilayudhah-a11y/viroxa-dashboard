@@ -172,53 +172,79 @@ const todayClicks =
 			</div>
 
 
-          <div className="space-y-3">
-
-            {analytics.map((item) => (
-
-              <div
-                key={item.id}
-                className="bg-black/20 border border-white/10 rounded-2xl px-4 py-4 flex items-center justify-between"
-              >
-
-                <div>
-
-                  <p className="font-semibold">
-                    {item.slug}
-                  </p>
-
-                  
-				<p className="text-xs text-zinc-500 mt-1">
-				{item.tracking}
-				</p>
-				
-				<div className="flex gap-2 mt-2">
-				
-				<span className="text-[10px] bg-white/5 border border-white/10 px-2 py-1 rounded-full">
-					{item.device}
-				</span>
-				
-				<span className="text-[10px] bg-white/5 border border-white/10 px-2 py-1 rounded-full">
-					{item.country}
-				</span>
-				
-				</div>
-
-
-                </div>
-
-                <p className="text-xs text-zinc-500">
-                  {new Date(
-                    item.created_at
-                  ).toLocaleString()}
-                </p>
-
-              </div>
-
-            ))}
-
-          </div>
-
+			<div className="overflow-x-auto rounded-3xl border border-white/10">
+			
+			<table className="w-full text-sm">
+			
+				<thead className="bg-white/5 text-zinc-400">
+			
+				<tr>
+			
+					<th className="text-left px-4 py-3">
+					Slug
+					</th>
+			
+					<th className="text-left px-4 py-3">
+					Device
+					</th>
+			
+					<th className="text-left px-4 py-3">
+					Country
+					</th>
+			
+					<th className="text-left px-4 py-3">
+					Tracking
+					</th>
+			
+					<th className="text-left px-4 py-3">
+					Timestamp
+					</th>
+			
+				</tr>
+			
+				</thead>
+			
+				<tbody>
+			
+				{analytics.map((item) => (
+			
+					<tr
+					key={item.id}
+					className="border-t border-white/5"
+					>
+			
+					<td className="px-4 py-3">
+						{item.slug}
+					</td>
+			
+					<td className="px-4 py-3">
+						{item.device}
+					</td>
+			
+					<td className="px-4 py-3">
+						{item.country}
+					</td>
+			
+					<td className="px-4 py-3 text-zinc-500">
+						{item.tracking}
+					</td>
+			
+					<td className="px-4 py-3 text-zinc-500">
+						{new Date(
+						item.created_at
+						).toLocaleString()}
+					</td>
+			
+					</tr>
+			
+				))}
+			
+				</tbody>
+			
+			</table>
+			
+			</div>
+          
         </div>
 
       </main>

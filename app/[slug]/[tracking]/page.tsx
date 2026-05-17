@@ -1,3 +1,5 @@
+import { headers } from "next/headers";
+
 import { redirect } from "next/navigation";
 
 import { supabase } from "@/lib/supabase";
@@ -44,6 +46,29 @@ export default async function RedirectPage({
     );
   }
 
+const headersList =
+  headers();
+
+const userAgent =
+  (await headersList)
+    .get("user-agent") || "";
+
+let device = "Desktop";
+
+if (
+  userAgent.includes("Android")
+) {
+
+  device = "Android";
+}
+
+if (
+  userAgent.includes("iPhone")
+) {
+
+  device = "iPhone";
+}
+
   await supabase
     .from("analytics")
     .insert([
@@ -51,7 +76,7 @@ export default async function RedirectPage({
         slug,
         tracking,
         user_id: link.user_id,
-        device: "unknown",
+        device,
         country: "unknown"
       }
     ]);

@@ -16,6 +16,7 @@ export async function GET(
     supabase
       .from("analytics")
       .select("*")
+	  .range(0, 5000)
       .order("id", {
         ascending: false
       });

@@ -133,7 +133,7 @@ const todayClicks =
 			</p>
 			
 			<h2 className="text-4xl font-black mt-2">
-				{todayClicks}
+				{analytics.length}
 			</h2>
 			
 			</div>

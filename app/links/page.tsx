@@ -364,34 +364,36 @@ return (
 
       <div className="mt-8 rounded-3xl border border-white/10 bg-black/20 p-4 backdrop-blur-xl">
 
-        <textarea
-          readOnly
-          value={
-            links
-              .map(
-                (link) =>
-                 
-					`${(
-						selectedDomain === "RANDOM"
-					
-						? domains[
-							Math.floor(
-								Math.random() *
-								domains.length
-							)
-						]
-					
-						: selectedDomain
-					
-					).replace(
-						"https://",
-						"hxxps://"
-					)}/${link.slug}/${link.tracking}`
-					
-              .join("\n")
-          }
-          className="w-full h-[240px] bg-transparent outline-none resize-none text-sm text-zinc-300"
-        />
+<textarea
+  readOnly
+  value={
+    links
+      .map((link) => {
+
+        const randomDomain =
+
+          selectedDomain ===
+          "RANDOM"
+
+            ? domains[
+                Math.floor(
+                  Math.random() *
+                  domains.length
+                )
+              ]
+
+            : selectedDomain;
+
+        return `${randomDomain.replace(
+          "https://",
+          "hxxps://"
+        )}/${link.slug}/${link.tracking}`;
+
+      })
+      .join("\n")
+  }
+  className="w-full h-[240px] bg-transparent outline-none resize-none text-sm text-zinc-300"
+/>
 
       </div>
 

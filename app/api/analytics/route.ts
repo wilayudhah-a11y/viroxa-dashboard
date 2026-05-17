@@ -13,14 +13,15 @@ export async function GET(
     searchParams.get("user_id");
 
   let query =
-  supabase
-    .from("analytics")
-    .select("*")
-    .order("id", {
-      ascending: false
-    })
-    .range(0, 5000);
-
+    supabase
+      .from("analytics")
+      .select("*", {
+        count: "exact"
+      })
+      .order("id", {
+        ascending: false
+      })
+      .range(0, 5000);
 
   if (user_id) {
 
@@ -31,8 +32,11 @@ export async function GET(
       );
   }
 
-  const { data, error } =
-    await query;
+  const {
+    data,
+    error,
+    count
+  } = await query;
 
   if (error) {
 
@@ -46,6 +50,9 @@ export async function GET(
     );
   }
 
-  return NextResponse.json(data);
+  return NextResponse.json({
+    data,
+    count
+  });
 }
 

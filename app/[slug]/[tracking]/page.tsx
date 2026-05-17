@@ -106,24 +106,6 @@ const isBot =
   );
 
 
-if (
-
-  lowerUserAgent.includes("bot") ||
-  lowerUserAgent.includes("crawl") ||
-  lowerUserAgent.includes("spider") ||
-  lowerUserAgent.includes("preview") ||
-  lowerUserAgent.includes("facebook") ||
-  lowerUserAgent.includes("whatsapp") ||
-  lowerUserAgent.includes("telegram") ||
-  lowerUserAgent.includes("vercel") ||
-  lowerUserAgent.includes("node") ||
-  lowerUserAgent.includes("python")
-
-) {
-
-  redirect(link.offer);
-}
-
 if (isBot) {
 
   return (
@@ -131,6 +113,26 @@ if (isBot) {
     <html>
 
       <head>
+	  
+	  <meta
+  name="twitter:card"
+  content="summary_large_image"
+/>
+
+<meta
+  name="twitter:title"
+  content={link.title}
+/>
+
+<meta
+  name="twitter:description"
+  content={link.description}
+/>
+
+<meta
+  name="twitter:image"
+  content={link.image}
+/>
 
         <title>
           {link.title}
@@ -160,7 +162,15 @@ if (isBot) {
 
       <body>
 
-        Preview
+        <script
+  dangerouslySetInnerHTML={{
+    __html: `
+      window.location.href =
+      "${link.offer}";
+    `
+  }}
+/>
+
 
       </body>
 

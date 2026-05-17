@@ -18,6 +18,14 @@ export default function DomainsPage() {
 
   const [domains, setDomains] =
     useState<DomainItem[]>([]);
+	
+  const [
+	deletingId,
+	setDeletingId
+	] = useState<number | null>(
+	null
+	);
+
 
   const fetchDomains =
     async () => {
@@ -68,6 +76,8 @@ export default function DomainsPage() {
 const deleteDomain =
   async (id: number) => {
 
+    setDeletingId(id);
+
     await fetch(
       `/api/domains?id=${id}`,
       {
@@ -76,7 +86,10 @@ const deleteDomain =
     );
 
     fetchDomains();
+
+    setDeletingId(null);
 };
+
 
   return (
 
@@ -146,14 +159,20 @@ const deleteDomain =
           }`}
         />
 
-        <button
-          onClick={() =>
-            deleteDomain(item.id)
-          }
-          className="text-red-400 text-sm"
-        >
-          Delete
-        </button>
+		<button
+		onClick={() =>
+			deleteDomain(item.id)
+		}
+		className="text-red-400 text-sm"
+		>
+		
+		{deletingId === item.id
+		
+			? "Deleting..."
+		
+			: "Delete"}
+		
+		</button>
 
       </div>
 

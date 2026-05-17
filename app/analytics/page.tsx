@@ -15,9 +15,14 @@ type AnalyticsItem = {
 
 export default function AnalyticsPage() {
 
-  const [analytics, setAnalytics] =
-    useState<AnalyticsItem[]>([]);
+  const [
+  totalClicks,
+  setTotalClicks
+] = useState(0);
 
+const [analytics, setAnalytics] =
+  useState<AnalyticsItem[]>([]);
+  
   const currentUser =
     typeof window !== "undefined"
       ? JSON.parse(
@@ -27,36 +32,43 @@ export default function AnalyticsPage() {
         )
       : {};
 
-  const fetchAnalytics =
-    async () => {
+  
+const fetchAnalytics =
+  async () => {
 
-      const response =
-        await fetch(
-          `/api/analytics?user_id=${currentUser.id}`
-        );
+    const response =
+      await fetch(
+        `/api/analytics?user_id=${currentUser.id}`
+      );
 
-      const data =
-        await response.json();
+    const data =
+      await response.json();
 
-      setAnalytics(data);
-    };
+    setAnalytics(
+      data.data || []
+    );
 
+    setTotalClicks(
+      data.count || 0
+    );
+};
 
-	useEffect(() => {
-	
-	fetchAnalytics();
-	
-	const interval =
-		setInterval(() => {
-	
-		fetchAnalytics();
-	
-		}, 5000);
-	
-	return () =>
-		clearInterval(interval);
-	
-	}, []);
+useEffect(() => {
+
+  fetchAnalytics();
+
+  const interval =
+    setInterval(() => {
+
+      fetchAnalytics();
+
+    }, 5000);
+
+  return () =>
+    clearInterval(interval);
+
+}, []);
+
 
 
 const todayClicks =

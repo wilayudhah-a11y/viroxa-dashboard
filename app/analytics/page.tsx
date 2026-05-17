@@ -41,11 +41,23 @@ export default function AnalyticsPage() {
       setAnalytics(data);
     };
 
-  useEffect(() => {
 
-    fetchAnalytics();
+	useEffect(() => {
+	
+	fetchAnalytics();
+	
+	const interval =
+		setInterval(() => {
+	
+		fetchAnalytics();
+	
+		}, 5000);
+	
+	return () =>
+		clearInterval(interval);
+	
+	}, []);
 
-  }, []);
 
 const todayClicks =
   analytics.filter((item) => {

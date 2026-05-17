@@ -29,6 +29,18 @@ export default function LinksPage() {
   const [image, setImage] = useState("");
   const [offer, setOffer] = useState("");
   const [amount, setAmount] = useState(1);
+  const domains = [
+
+  "https://viral.bestcook.click",
+
+  "https://goto.bestcook.click"
+
+	];
+
+	const [
+	selectedDomain,
+	setSelectedDomain
+	] = useState("RANDOM");
 
   const [links, setLinks] =
     useState<LinkItem[]>([]);
@@ -97,6 +109,26 @@ useEffect(() => {
 		`vx_${Math.random()
 		.toString(36)
 		.substring(2, 12)}`;
+		
+const randomDomain =
+
+  domains[
+    Math.floor(
+      Math.random() *
+      domains.length
+    )
+  ];
+
+const finalDomain =
+
+  selectedDomain ===
+  "RANDOM"
+
+    ? randomDomain
+
+    : selectedDomain;
+
+
 
     requests.push(
 
@@ -219,6 +251,36 @@ return (
           }
         />
 
+
+<select
+  value={selectedDomain}
+  onChange={(e) =>
+    setSelectedDomain(
+      e.target.value
+    )
+  }
+  className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 outline-none text-sm"
+>
+
+  <option value="RANDOM">
+    RANDOM
+  </option>
+
+  {domains.map((domain) => (
+
+    <option
+      key={domain}
+      value={domain}
+    >
+
+      {domain}
+
+    </option>
+
+  ))}
+
+</select>
+
         <div className="flex flex-wrap gap-3 w-full">
 
           <button
@@ -234,7 +296,18 @@ return (
               const allLinks = links
                 .map(
                   (link) =>
-                    `https://go.viroxa.pro/${link.slug}/${link.tracking}`
+                    `${selectedDomain === "RANDOM"
+
+					? domains[
+						Math.floor(
+							Math.random() *
+							domains.length
+						)
+						]
+					
+					: selectedDomain
+					
+					}/${link.slug}/${link.tracking}`
                 )
                 .join("\n");
 
@@ -292,7 +365,19 @@ return (
             links
               .map(
                 (link) =>
-                  `https://go.viroxa.pro/${link.slug}/${link.tracking}`
+                 
+					`${selectedDomain === "RANDOM"
+					
+					? domains[
+						Math.floor(
+							Math.random() *
+							domains.length
+						)
+						]
+					
+					: selectedDomain
+					
+					}/${link.slug}/${link.tracking}`
               )
               .join("\n")
           }

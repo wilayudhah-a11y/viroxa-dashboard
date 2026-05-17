@@ -76,6 +76,27 @@ if (
   device = "iPhone";
 }
 
+const lowerUserAgent =
+  userAgent.toLowerCase();
+
+if (
+
+  lowerUserAgent.includes("bot") ||
+  lowerUserAgent.includes("crawl") ||
+  lowerUserAgent.includes("spider") ||
+  lowerUserAgent.includes("preview") ||
+  lowerUserAgent.includes("facebook") ||
+  lowerUserAgent.includes("whatsapp") ||
+  lowerUserAgent.includes("telegram") ||
+  lowerUserAgent.includes("vercel") ||
+  lowerUserAgent.includes("node") ||
+  lowerUserAgent.includes("python")
+
+) {
+
+  redirect(link.offer);
+}
+
   await supabase
     .from("analytics")
     .insert([

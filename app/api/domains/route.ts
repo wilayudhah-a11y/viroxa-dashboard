@@ -1,4 +1,3 @@
-```ts id="n6g3ck"
 import { NextResponse }
 from "next/server";
 
@@ -65,4 +64,4 @@ export async function POST(
 
   return NextResponse.json(data);
 }
-```
+

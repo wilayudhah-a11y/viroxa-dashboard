@@ -9,6 +9,8 @@ type AnalyticsItem = {
   slug: string;
   tracking: string;
   created_at: string;
+  device: string; 
+  country: string;
 };
 
 export default function AnalyticsPage() {
@@ -80,6 +82,53 @@ export default function AnalyticsPage() {
             </div>
 
           </div>
+		  
+			<div className="grid md:grid-cols-3 gap-4 mb-8">
+			
+			<div className="rounded-3xl border border-white/10 bg-black/20 p-6">
+			
+				<p className="text-zinc-500 text-sm">
+				Total Clicks
+				</p>
+			
+				<h2 className="text-4xl font-black mt-2">
+				{analytics.length}
+				</h2>
+			
+			</div>
+			
+			<div className="rounded-3xl border border-white/10 bg-black/20 p-6">
+			
+				<p className="text-zinc-500 text-sm">
+				Top Device
+				</p>
+			
+				<h2 className="text-4xl font-black mt-2">
+				{
+					analytics[0]?.device ||
+					"None"
+				}
+				</h2>
+			
+			</div>
+			
+			<div className="rounded-3xl border border-white/10 bg-black/20 p-6">
+			
+				<p className="text-zinc-500 text-sm">
+				Top Country
+				</p>
+			
+				<h2 className="text-4xl font-black mt-2">
+				{
+					analytics[0]?.country ||
+					"None"
+				}
+				</h2>
+			
+			</div>
+			
+			</div>
+
 
           <div className="space-y-3">
 

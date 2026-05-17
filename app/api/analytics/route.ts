@@ -21,7 +21,7 @@ export async function GET(
       .order("id", {
         ascending: false
       })
-      .range(0, 5000);
+      .range(0, 50);
 
   if (user_id) {
 

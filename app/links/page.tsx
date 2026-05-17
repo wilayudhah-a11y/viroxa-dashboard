@@ -260,6 +260,11 @@ return (
     )
   }
   className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 outline-none text-sm"
+  
+  style={{
+    backgroundColor: "#111",
+    color: "white"
+  }}
 >
 
   <option value="RANDOM">

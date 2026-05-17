@@ -112,7 +112,7 @@ const todayClicks =
             <div className="text-right">
 
               <p className="text-3xl font-black">
-                {analytics.length}
+                {totalClicks}
               </p>
 
               <p className="text-zinc-500 text-sm">

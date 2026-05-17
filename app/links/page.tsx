@@ -93,10 +93,10 @@ useEffect(() => {
           : `${slug}-${i}`
         : randomSlug;
 
-	const encodedUser = btoa(
-		String(currentUser.id)
-		);
-
+	const encodedUser =
+		`vx_${Math.random()
+		.toString(36)
+		.substring(2, 12)}`;
 
     requests.push(
 

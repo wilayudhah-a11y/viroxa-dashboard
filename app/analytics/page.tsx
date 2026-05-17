@@ -47,6 +47,22 @@ export default function AnalyticsPage() {
 
   }, []);
 
+const todayClicks =
+  analytics.filter((item) => {
+
+    const today =
+      new Date()
+        .toDateString();
+
+    const itemDate =
+      new Date(
+        item.created_at
+      ).toDateString();
+
+    return today === itemDate;
+
+  }).length;
+
   return (
 
     <AdminLayout>
@@ -83,7 +99,21 @@ export default function AnalyticsPage() {
 
           </div>
 		  
-			<div className="grid md:grid-cols-3 gap-4 mb-8">
+			<div className="grid md:grid-cols-4 gap-4 mb-8">
+			
+			
+			<div className="rounded-3xl border border-white/10 bg-black/20 p-6">
+			
+			<p className="text-zinc-500 text-sm">
+				Daily Clicks
+			</p>
+			
+			<h2 className="text-4xl font-black mt-2">
+				{todayClicks}
+			</h2>
+			
+			</div>
+
 			
 			<div className="rounded-3xl border border-white/10 bg-black/20 p-6">
 			

@@ -13,13 +13,14 @@ export async function GET(
     searchParams.get("user_id");
 
   let query =
-    supabase
-      .from("analytics")
-      .select("*")
-	  .range(0, 5000)
-      .order("id", {
-        ascending: false
-      });
+  supabase
+    .from("analytics")
+    .select("*")
+    .order("id", {
+      ascending: false
+    })
+    .range(0, 5000);
+
 
   if (user_id) {
 

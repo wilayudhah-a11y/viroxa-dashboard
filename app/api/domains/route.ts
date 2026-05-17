@@ -1,3 +1,4 @@
+```ts id="n6g3ck"
 import { NextResponse }
 from "next/server";
 
@@ -29,3 +30,39 @@ export async function GET() {
   return NextResponse.json(data);
 }
 
+export async function POST(
+  req: Request
+) {
+
+  const body =
+    await req.json();
+
+  const { domain } = body;
+
+  const { data, error } =
+    await supabase
+      .from("domains")
+      .insert([
+        {
+          domain,
+          status: "pending"
+        }
+      ])
+      .select()
+      .single();
+
+  if (error) {
+
+    return NextResponse.json(
+      {
+        error: error.message
+      },
+      {
+        status: 500
+      }
+    );
+  }
+
+  return NextResponse.json(data);
+}
+```

@@ -38,6 +38,33 @@ export default function DomainsPage() {
     fetchDomains();
 
   }, []);
+  
+  const addDomain =
+  async () => {
+
+    if (!domain) return;
+
+    await fetch(
+      "/api/domains",
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type":
+            "application/json"
+        },
+
+        body: JSON.stringify({
+          domain
+        })
+      }
+    );
+
+    setDomain("");
+
+    fetchDomains();
+};
+
 
   return (
 
@@ -68,10 +95,11 @@ export default function DomainsPage() {
           />
 
           <button
-            className="bg-cyan-500 hover:bg-cyan-400 transition px-6 rounded-2xl font-semibold"
-          >
-            Add Domain
-          </button>
+  onClick={addDomain}
+  className="bg-cyan-500 hover:bg-cyan-400 transition px-6 rounded-2xl font-semibold"
+>
+  Add Domain
+</button>
 
         </div>
 

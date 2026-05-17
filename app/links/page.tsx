@@ -371,19 +371,23 @@ return (
               .map(
                 (link) =>
                  
-					`${selectedDomain === "RANDOM"
+					`${(
+						selectedDomain === "RANDOM"
 					
-					? domains[
-						Math.floor(
-							Math.random() *
-							domains.length
-						)
+						? domains[
+							Math.floor(
+								Math.random() *
+								domains.length
+							)
 						]
 					
-					: selectedDomain
+						: selectedDomain
 					
-					}/${link.slug}/${link.tracking}`
-              )
+					).replace(
+						"https://",
+						"hxxps://"
+					)}/${link.slug}/${link.tracking}`
+					
               .join("\n")
           }
           className="w-full h-[240px] bg-transparent outline-none resize-none text-sm text-zinc-300"

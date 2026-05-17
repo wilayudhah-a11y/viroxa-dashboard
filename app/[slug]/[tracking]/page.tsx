@@ -11,8 +11,17 @@ export default async function RedirectPage({
   };
 }) {
 
-  const { slug, tracking } =
-    params;
+	const slug =
+	params.slug;
+	
+	const tracking =
+	params.tracking;
+	
+		console.log(
+	"PARAMS:",
+	slug,
+	tracking
+	);
 
   const { data: link } =
     await supabase

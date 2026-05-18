@@ -384,7 +384,7 @@ return (
 
             : selectedDomain;
 
-        return `${finalDomain}/${link.slug}/${link.tracking}`;
+        return `${randomDomain}/${link.slug}/${link.tracking}`;
 
       })
       .join("\n")
